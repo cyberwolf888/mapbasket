@@ -46,6 +46,7 @@ class LapanganController extends Controller
             'alamat' => 'required',
             'lat' => 'required',
             'long' => 'required',
+            'luas' => 'required',
             'keterangan' => 'required',
             'status' => 'required',
         ]);
@@ -55,6 +56,7 @@ class LapanganController extends Controller
         $model->alamat = $request->alamat;
         $model->lat = $request->lat;
         $model->long = $request->long;
+	    $model->luas = $request->luas;
         $model->keterangan = $request->keterangan;
         $model->status = $request->status;
         $model->save();
@@ -100,6 +102,7 @@ class LapanganController extends Controller
             'alamat' => 'required',
             'lat' => 'required',
             'long' => 'required',
+            'luas' => 'required',
             'keterangan' => 'required',
             'status' => 'required',
         ]);
@@ -109,6 +112,7 @@ class LapanganController extends Controller
         $model->alamat = $request->alamat;
         $model->lat = $request->lat;
         $model->long = $request->long;
+	    $model->luas = $request->luas;
         $model->keterangan = $request->keterangan;
         $model->status = $request->status;
         $model->save();

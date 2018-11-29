@@ -26,6 +26,18 @@
 							<i class="fa fa-map-marker"></i>
 							{{ $model->alamat }}
 						</a>
+					</span><br>
+					<span>
+						<a href="#listing-overview" class="listing-address">
+							<i class="fa fa-phone"></i>
+							{{ $model->telp }}
+						</a>
+					</span><br>
+					<span>
+						<a href="#listing-overview" class="listing-address">
+							<i class="fa fa-envelope"></i>
+							{{ $model->user->email }}
+						</a>
 					</span>
 				</div>
 			</div>
@@ -107,22 +119,62 @@
 		================================================== -->
 		<div class="col-lg-4 col-md-4 margin-top-75 sticky">
 
-				
-		
 
+			<!-- Verified Badge -->
+			@if($model->recruitment == 1)
+				<div class="verified-badge with-tip" data-tip-content="This club has been open for new member.">
+					<i class="sl sl-icon-check"></i> Open Recruitment
+				</div>
+			@else
+				<div class="verified-badge with-tip" data-tip-content="This club is not recruit new member." style="background-color: #acb1ae;">
+					<i class="sl sl-icon-close"></i> Close Recruitment
+				</div>
+			@endif
+
+			@if($model->recruitment == 1)
+				<!-- Member Fee -->
+				<div class="boxed-widget opening-hours margin-top-35">
+					<h3><i class="sl sl-icon-tag"></i> Member Fee</h3>
+					<h4>IDR {{ $model->txt_iuran }}</h4>
+				</div>
+			@endif
+
+			@if($model->prestasi->count() > 0)
+				<!-- Member Fee -->
+				<div class="boxed-widget opening-hours margin-top-35">
+					<h3><i class="sl sl-icon-trophy"></i> Club Trophy</h3>
+					<ul>
+						@foreach ($model->prestasi as $prestasi)
+							<li><i class="sl sl-icon-like"></i>  {{ $prestasi->prestasi }} </li>
+						@endforeach
+
+					</ul>
+				</div>
+			@endif
+
+			@if(!is_null($model->pelatih))
+				<!-- Coach -->
+				<div class="boxed-widget opening-hours margin-top-35">
+					<h3><i class="sl sl-icon-people"></i> Coach</h3>
+					<h4>{{ $model->pelatih }}</h4>
+				</div>
+			@endif
+
+			@if($model->active_schedule->count() > 0)
 			<!-- Opening Hours -->
 			<div class="boxed-widget opening-hours margin-top-35">
 				<div class="listing-badge now-open">Active</div>
 				<h3><i class="sl sl-icon-clock"></i> Training Schedule</h3>
 				<ul>
                     @foreach ($model->active_schedule as $schedule)
-                        <li>{{ $schedule->lapangan->nama }} <span>{{ date('D, d M',strtotime($schedule->tgl)) }}, {{ date('H:i',strtotime($schedule->start )) }} - {{ date('H:i',strtotime($schedule->end )) }}</span></li>
+                        <li>{{ substr($schedule->lapangan->nama,0,20) }}<span>{{ date('D, d M',strtotime($schedule->tgl)) }}, {{ date('H:i',strtotime($schedule->start )) }} - {{ date('H:i',strtotime($schedule->end )) }}</span></li>
                     @endforeach
                     
 				</ul>
 			</div>
 			<!-- Opening Hours / End -->
-
+			@endif
+			
 			<!-- Share / Like -->
 			<div class="listing-share margin-top-40 margin-bottom-40 no-border">
 					<!-- Share Buttons -->

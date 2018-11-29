@@ -106,6 +106,11 @@ class DashboardController extends Controller
         $model->alamat = $request->alamat;
         $model->lat = $request->lat;
         $model->long = $request->long;
+	    $model->recruitment = $request->recruitment;
+	    $model->pelatih = $request->pelatih;
+	    $model->jml_anggota = $request->jml_anggota;
+	    $model->iuran = $request->iuran;
+	    $model->type_iuran = $request->type_iuran;
         $model->keterangan = $request->keterangan;
         $model->status = $request->status;
         $model->save();

@@ -62,6 +62,13 @@ Route::group(['prefix' => 'master', 'middleware' => ['auth','role:admin-access']
             Route::get('/destroy/{id}', 'Master\ClubController@foto_destroy')->name('.delete');
         });
 
+	    Route::group(['prefix' => 'prestasi', 'as'=>'.prestasi'], function() {
+		    Route::get('/{id}', 'Master\ClubController@prestasi_index')->name('.manage');
+		    Route::get('/create/{id}', 'Master\ClubController@prestasi_create')->name('.create');
+		    Route::post('/create/{id}', 'Master\ClubController@prestasi_store')->name('.store');
+		    Route::get('/destroy/{id}', 'Master\ClubController@prestasi_destroy')->name('.delete');
+	    });
+
     });
 
     //Reviews
@@ -116,6 +123,14 @@ Route::group(['prefix' => 'operator', 'middleware' => ['auth','role:operator-acc
         Route::post('/create', 'Operator\FotoController@store')->name('.store');
         Route::get('/destroy/{id}', 'Operator\FotoController@destroy')->name('.delete');
     });
+
+	//Prestasi
+	Route::group(['prefix' => 'prestasi', 'as'=>'.prestasi'], function() {
+		Route::get('/', 'Operator\PrestasiController@index')->name('.manage');
+		Route::get('/create', 'Operator\PrestasiController@create')->name('.create');
+		Route::post('/create', 'Operator\PrestasiController@store')->name('.store');
+		Route::get('/destroy/{id}', 'Operator\PrestasiController@destroy')->name('.delete');
+	});
 
     //Schedule
     Route::group(['prefix' => 'schedule', 'as'=>'.schedule'], function() {

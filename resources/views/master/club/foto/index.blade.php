@@ -45,9 +45,11 @@
                               
                         </div>
                       @endforeach
+
                     </div>
                 </div>
             </div>
+            <a class="btn btn-secondary" href="{{ route('master.club.manage') }}">Back</a>
         </div>
 
     </div><!-- br-pagebody -->

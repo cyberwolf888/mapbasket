@@ -61,6 +61,12 @@
             <span class="menu-item-label">Foto</span>
           </a><!-- br-menu-link -->
         </li><!-- br-menu-item -->
+      <li class="br-menu-item">
+          <a href="{{ route('operator.prestasi.manage') }}" class="br-menu-link">
+              <i class="menu-item-icon icon ion-trophy tx-24"></i>
+              <span class="menu-item-label">Prestasi</span>
+          </a><!-- br-menu-link -->
+      </li><!-- br-menu-item -->
         <li class="br-menu-item">
           <a href="{{ route('operator.schedule.manage') }}" class="br-menu-link">
             <i class="menu-item-icon icon ion-ios-list-outline tx-24"></i>

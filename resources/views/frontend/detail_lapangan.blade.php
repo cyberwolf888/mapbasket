@@ -186,19 +186,23 @@
 		================================================== -->
 		<div class="col-lg-4 col-md-4 margin-top-75 sticky">
 
-				
-		
-
 			<!-- Opening Hours -->
 			<div class="boxed-widget opening-hours margin-top-35">
 				<div class="listing-badge now-open">Active</div>
 				<h3><i class="sl sl-icon-clock"></i> Training Schedule</h3>
 				<ul>
                     @foreach ($model->active_schedule as $schedule)
-                        <li>{{ $schedule->club->nama }} <span>{{ date('D, d M',strtotime($schedule->tgl)) }}, {{ date('H:i',strtotime($schedule->start )) }} - {{ date('H:i',strtotime($schedule->end )) }}</span></li>
+                        <li>{{ substr($schedule->club->nama,0,20) }}<span>{{ date('D, d M',strtotime($schedule->tgl)) }}, {{ date('H:i',strtotime($schedule->start )) }} - {{ date('H:i',strtotime($schedule->end )) }}</span></li>
                     @endforeach
                     
 				</ul>
+			</div>
+			<!-- Opening Hours / End -->
+
+			<!-- Opening Hours -->
+			<div class="boxed-widget opening-hours margin-top-35">
+				<h3><i class="sl sl-icon-map"></i> Surface Area</h3>
+				<h4>{{ $model->luas }} m2</h4>
 			</div>
 			<!-- Opening Hours / End -->
 

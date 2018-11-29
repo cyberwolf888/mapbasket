@@ -152,7 +152,7 @@
 ================================================== -->
 <div id="map-container" class="fullwidth-home-map">
 
-    <div id="map" data-map-zoom="10">
+    <div id="map" data-map-zoom="13">
         <!-- map goes here -->
     </div>
 

@@ -49,12 +49,18 @@
                                     <input class="form-control" type="text" value="{{ $model->long }}" readonly>
                             </div>
                         </div><!-- col-4 -->
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="form-group bd-t-0-force">
                                     <label class="form-control-label">Address:</label>
                                     <input class="form-control" type="text" value="{{ $model->alamat }}" readonly>
                             </div>
-                        </div><!-- col-8 -->
+                        </div><!-- col-4 -->
+                        <div class="col-md-4">
+                            <div class="form-group bd-t-0-force">
+                                <label class="form-control-label">Surface area (m2):</label>
+                                <input class="form-control" type="text" value="{{ $model->luas }}" readonly>
+                            </div>
+                        </div><!-- col-4 -->
                         <div class="col-md-4">
                             <div class="form-group mg-md-l--1 bd-t-0-force">
                                     <label class="form-control-label">Status:</label>

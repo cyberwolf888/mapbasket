@@ -48,6 +48,7 @@
                     </div>
                 </div>
             </div>
+            <a class="btn btn-secondary" href="{{ route('master.lapangan.manage') }}">Back</a>
         </div>
 
     </div><!-- br-pagebody -->

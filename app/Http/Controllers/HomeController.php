@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Lapangan;
 use App\Models\Club;
 use App\Models\Review;
+use Illuminate\Support\Facades\DB;
+
 class HomeController extends Controller
 {
     /**
@@ -46,18 +48,90 @@ class HomeController extends Controller
         return view('frontend.home', ['lapangan'=>$lapangan, 'club'=>$club, 'request'=>$request]);
     }
 
-    public function lapangan()
+    public function lapangan(Request $request)
     {
-        $model = Lapangan::where('status',1)->orderBy('created_at','desc')->paginate(10);
+	    $query = Lapangan::where('status',1);
+	    if($request->has('q') && $request->q != ''){
+		    $query->whereRaw(DB::raw('nama like "%'.$request->q.'%"'));
+	    }
+
+	    if($request->has( 'order') && $request->order != ''){
+		    if($request->order == 0){
+			    $model = $query->get()->sortByDesc('rating');
+		    }elseif ($request->order == 1){
+			    $model = $query->get()->sortByDesc('luas');
+		    }elseif ($request->order == 2){
+			    $model = $query->get()->sortBy('luas');
+		    }
+	    }else{
+		    $model = $query->get()->sortByDesc('rating');
+	    }
 
         return view('frontend.lapangan', ['model'=>$model]);
     }
 
-    public function club()
+    public function club(Request $request)
     {
-        $model = Club::where('status',1)->orderBy('created_at','desc')->paginate(10);
+        $query = Club::where('status',1);
+        if($request->has('q') && $request->q != ''){
+        	$query->whereRaw(DB::raw('nama like "%'.$request->q.'%"'));
+        }
 
-        return view('frontend.club', ['model'=>$model]);
+        if($request->has('recruitment') && $request->recruitment != 0){
+        	if($request->recruitment == 2){
+		        $query->where('recruitment',0);
+	        }elseif($request->recruitment == 1){
+		        $query->where('recruitment',1);
+	        }
+        }
+
+	    if($request->has('coach') && $request->coach != 0){
+		    if($request->coach == 2){
+			    $query->whereRaw(DB::raw('pelatih IS NULL'));
+		    }elseif($request->coach == 1){
+			    $query->whereRaw(DB::raw('pelatih IS NOT NULL'));
+		    }
+	    }
+
+	    if($request->has( 'order') && $request->order != ''){
+		    if($request->order == 0){
+			    $model = $query->get()->sortByDesc('jml_anggota');
+		    }elseif ($request->order == 1){
+			    $model = $query->get()->sortBy('iuran');
+		    }elseif ($request->order == 2){
+			    $model = $query->get()->sortByDesc('iuran');
+		    }elseif ($request->order == 3){
+			    $model = $query->get()->sortByDesc(function ($value, $key) {
+				    return $value->prestasi->count();
+			    });
+		    }elseif ($request->order == 4){
+			    $model = $query->get()->sortByDesc('id');
+		    }elseif ($request->order == 5){
+			    $model = $query->get()->sortBy('id');
+		    }
+	    }else{
+		    $model = $query->get()->sortByDesc('jml_anggota');
+	    }
+
+
+	    $jarak= [];
+	    $link = '';
+	    if($request->has( 'lat') && $request->lat != '' && $request->has( 'lon') && $request->lon != '' ){
+        	$destinations = "";
+        	foreach ($model as $mod){
+		        $destinations.= $mod->lat.','.$mod->long.'|';
+	        }
+		    $destinations = substr( $destinations, 0,-1);
+        	$origins = $request->lat.','.$request->lon;
+        	$link = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$origins.'&destinations='.$destinations.'&key='.env( 'MAP_API_KEY');
+
+		    $json = file_get_contents($link);
+		    $obj = json_decode($json);
+		    $jarak = $obj->rows[0]->elements;
+
+	    }
+
+        return view('frontend.club', ['model'=>$model, 'jarak'=>$jarak, 'link'=>$link]);
     }
 
     public function detail_lapangan($id)

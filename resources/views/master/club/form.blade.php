@@ -88,18 +88,48 @@
                             </div>
                         </div><!-- col-4 -->
                         
-                        <div class="col-lg-8">
+                        <div class="col-lg-4">
                           <div class="form-group mg-b-10-force">
                             <label class="form-control-label">Address: <span class="tx-danger">*</span></label>
                             {!! Form::text('alamat', $model->alamat,['id'=>'alamat','class'=>'form-control','required'=>'']) !!}
                           </div>
                         </div><!-- col-8 -->
+                          <div class="col-lg-4">
+                              <div class="form-group mg-b-10-force">
+                                  <label class="form-control-label">Recruitment: <span class="tx-danger">*</span></label>
+                                  {!! Form::select('recruitment', ['1'=>'Open','0'=>'Closed'], $model->recruitment, ['class'=>'form-control select2']) !!}
+                              </div>
+                          </div><!-- col-4 -->
                         <div class="col-lg-4">
                           <div class="form-group mg-b-10-force">
                             <label class="form-control-label">Status: <span class="tx-danger">*</span></label>
-                            {!! Form::select('status', ['1'=>'Available','0'=>'Unavailable'], $model->status, ['class'=>'form-control select2','data-placeholder'=>'Choose country']) !!}
+                            {!! Form::select('status', ['1'=>'Available','0'=>'Unavailable'], $model->status, ['class'=>'form-control select2']) !!}
                           </div>
                         </div><!-- col-4 -->
+                      <div class="col-lg-3">
+                          <div class="form-group">
+                              <label class="form-control-label">Team Coach: </label>
+                              {!! Form::text('pelatih', $model->pelatih,['id'=>'pelatih','class'=>'form-control']) !!}
+                          </div>
+                      </div><!-- col-3 -->
+                      <div class="col-lg-3">
+                          <div class="form-group">
+                              <label class="form-control-label">Total Member: <span class="tx-danger">*</span></label>
+                              {!! Form::text('jml_anggota', $model->jml_anggota,['id'=>'jml_anggota','class'=>'form-control','required'=>'']) !!}
+                          </div>
+                      </div><!-- col-3 -->
+                      <div class="col-lg-3">
+                          <div class="form-group">
+                              <label class="form-control-label">Member Fee: <span class="tx-danger">*</span></label>
+                              {!! Form::text('iuran', $model->iuran,['id'=>'iuran','class'=>'form-control','required'=>'']) !!}
+                          </div>
+                      </div><!-- col-3 -->
+                      <div class="col-lg-3">
+                          <div class="form-group">
+                              <label class="form-control-label">Fee type: <span class="tx-danger">*</span></label>
+                              {!! Form::select('type_iuran', ['1'=>'Monthly','2'=>'Weekly'], $model->type_iuran, ['class'=>'form-control select2']) !!}
+                          </div>
+                      </div><!-- col-3 -->
                         <div class="col-lg-12">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">Keterangan: <span class="tx-danger">*</span></label>

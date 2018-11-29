@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Models\Prestasi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
@@ -69,6 +70,11 @@ class ClubController extends Controller
         $model->alamat = $request->alamat;
         $model->lat = $request->lat;
         $model->long = $request->long;
+		$model->recruitment = $request->recruitment;
+	    $model->pelatih = $request->pelatih;
+	    $model->jml_anggota = $request->jml_anggota;
+	    $model->iuran = $request->iuran;
+	    $model->type_iuran = $request->type_iuran;
         $model->keterangan = $request->keterangan;
         $model->status = $request->status;
         $model->save();
@@ -149,6 +155,11 @@ class ClubController extends Controller
         $model->alamat = $request->alamat;
         $model->lat = $request->lat;
         $model->long = $request->long;
+	    $model->recruitment = $request->recruitment;
+	    $model->pelatih = $request->pelatih;
+	    $model->jml_anggota = $request->jml_anggota;
+	    $model->iuran = $request->iuran;
+	    $model->type_iuran = $request->type_iuran;
         $model->keterangan = $request->keterangan;
         $model->status = $request->status;
         $model->save();
@@ -217,4 +228,38 @@ class ClubController extends Controller
         $model->delete();
         return redirect()->back();
     }
+
+
+    public function prestasi_index($id)
+    {
+	    $club = Club::find($id);
+	    $model = Prestasi::where('id_club',$id)->get();
+
+	    return view('master.club.prestasi.index',['club'=>$club, 'model'=>$model]);
+    }
+
+	public function prestasi_create($id)
+	{
+		$club = Club::find($id);
+
+		return view('master.club.prestasi.form',['club'=>$club]);
+	}
+
+	public function prestasi_store(Request $request, $id)
+	{
+		$model = new Prestasi();
+		$model->id_club = $id;
+		$model->prestasi = $request->prestasi;
+		$model->save();
+
+		return redirect()->route('master.club.prestasi.manage', ['id'=>$id]);
+	}
+
+	public function prestasi_destroy($id)
+	{
+		$model = Prestasi::find($id);
+		$model->delete();
+		return redirect()->back();
+	}
+
 }

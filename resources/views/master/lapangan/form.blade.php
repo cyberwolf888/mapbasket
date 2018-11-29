@@ -62,12 +62,18 @@
                             {!! Form::text('long', $model->long,['id'=>'long','class'=>'form-control','required'=>'','readonly']) !!}
                           </div>
                         </div><!-- col-4 -->
-                        <div class="col-lg-8">
+                        <div class="col-lg-4">
                           <div class="form-group mg-b-10-force">
                             <label class="form-control-label">Address: <span class="tx-danger">*</span></label>
                             {!! Form::text('alamat', $model->alamat,['id'=>'alamat','class'=>'form-control','required'=>'']) !!}
                           </div>
-                        </div><!-- col-8 -->
+                        </div><!-- col-4 -->
+                          <div class="col-lg-4">
+                              <div class="form-group mg-b-10-force">
+                                  <label class="form-control-label">Surface area (m2): <span class="tx-danger">*</span></label>
+                                  {!! Form::text('luas', $model->luas,['id'=>'luas','class'=>'form-control','required'=>'']) !!}
+                              </div>
+                          </div><!-- col-4 -->
                         <div class="col-lg-4">
                           <div class="form-group mg-b-10-force">
                             <label class="form-control-label">Status: <span class="tx-danger">*</span></label>

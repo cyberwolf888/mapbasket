@@ -27,7 +27,12 @@ class Club extends Model
     public function news()
     {
         return $this->hasMany('App\Models\News', 'id_club', 'id');
-    }   
+    }
+
+    public function prestasi()
+    {
+    	return $this->hasMany( 'App\Models\Prestasi', 'id_club', 'id');
+    }
 
     public function getActiveScheduleAttribute($value)
     {
@@ -44,4 +49,28 @@ class Club extends Model
         return null;
         
     }
+
+	public function getTxtIuranAttribute($value)
+	{
+		$tipe_iuran = ['1'=>'Month', '2'=>'Week'];
+
+		if(!is_null($this->iuran)){
+			if($this->iuran == 0){
+				return "Free";
+			}
+			return number_format( $this->iuran,0,',','.').' /'.$tipe_iuran[$this->type_iuran];
+		}
+
+		return "Free";
+
+	}
+
+	public function getTxtRecruitmentAttribute($value)
+	{
+		$tipe = ['1'=>'Open', '0'=>'Closed'];
+
+
+		return $tipe[$this->recruitment];
+
+	}
 }

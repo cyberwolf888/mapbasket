@@ -54,6 +54,7 @@
                                   <td>{{ $item->telp }}</td>
                                   <td>{{ $item->status == 1 ? 'Available' : 'Unavailable' }}</td>
                                   <td>
+                                      <a href="{{ route('master.club.prestasi.manage',['id' => $item->id]) }}" class="btn btn-info btn-icon"><div><i class="fa fa-trophy"></i></div></a>
                                       <a href="{{ route('master.club.foto.manage',['id' => $item->id]) }}" class="btn btn-info btn-icon"><div><i class="fa fa-image"></i></div></a>
                                       <a href="{{ route('master.club.edit', ['id' => $item->id]) }}" class="btn btn-warning btn-icon"><div><i class="fa fa-pencil"></i></div></a>
                                       <a href="{{ route('master.club.show', ['id'=>$item->id]) }}" class="btn btn-green btn-purple"><div><i class="fa fa-eye"></i></div></a>
