@@ -99,6 +99,12 @@
                                 <input class="form-control" type="text" value="{{ $model->txt_iuran }}" readonly>
                             </div>
                         </div><!-- col-3 -->
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label">Difable Person:</label>
+                                <input class="form-control" type="text" value="{{ $model->difable == 1 ? 'Accept' : 'Decline' }}" readonly>
+                            </div>
+                        </div><!-- col-3 -->
 
                         <div class="col-md-12">
                             <div class="form-group mg-md-l--1 bd-t-0-force">

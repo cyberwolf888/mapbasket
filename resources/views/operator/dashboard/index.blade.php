@@ -133,7 +133,14 @@
                                 {!! Form::text('long', $model->long,['id'=>'long','class'=>'form-control','required'=>'','readonly']) !!}
                             </div>
                         </div><!-- col-3 -->
-                        
+
+                      <div class="col-lg-3">
+                          <div class="form-group">
+                              <label class="form-control-label">Difable Person: <span class="tx-danger">*</span></label>
+                              {!! Form::select('difable', ['1'=>'Accept','0'=>'Decline'], $model->difable, ['class'=>'form-control select2']) !!}
+                          </div>
+                      </div><!-- col-3 -->
+
                         <div class="col-lg-12">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">Keterangan: <span class="tx-danger">*</span></label>

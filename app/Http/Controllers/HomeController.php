@@ -93,6 +93,15 @@ class HomeController extends Controller
 		    }
 	    }
 
+	    if($request->has('difable') && $request->difable != 0){
+		    if($request->difable == 2){
+			    $query->whereRaw(DB::raw('difable = 0'));
+		    }elseif($request->difable == 1){
+			    $query->whereRaw(DB::raw('difable = 1'));
+		    }
+	    }
+
+
 	    if($request->has( 'order') && $request->order != ''){
 		    if($request->order == 0){
 			    $model = $query->get()->sortByDesc('jml_anggota');

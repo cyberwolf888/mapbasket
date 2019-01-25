@@ -74,6 +74,7 @@ class ClubController extends Controller
 	    $model->pelatih = $request->pelatih;
 	    $model->jml_anggota = $request->jml_anggota;
 	    $model->iuran = $request->iuran;
+	    $model->difable = $request->difable;
 	    $model->type_iuran = $request->type_iuran;
         $model->keterangan = $request->keterangan;
         $model->status = $request->status;
@@ -159,6 +160,7 @@ class ClubController extends Controller
 	    $model->pelatih = $request->pelatih;
 	    $model->jml_anggota = $request->jml_anggota;
 	    $model->iuran = $request->iuran;
+	    $model->difable = $request->difable;
 	    $model->type_iuran = $request->type_iuran;
         $model->keterangan = $request->keterangan;
         $model->status = $request->status;

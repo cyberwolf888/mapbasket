@@ -186,6 +186,15 @@
                         </div>
                         <!-- Row / End -->
 
+                        <!-- Row -->
+                        <div class="row with-forms">
+                            <!-- Type -->
+                            <div class="col-md-12">
+                                {!! Form::select('difable', ['0'=>'All Person','1'=>'Difable Only','2'=>'Normal Only'], isset($_GET['difable']) ? $_GET['difable'] : null, ['class'=>'chosen-select']) !!}
+                            </div>
+                        </div>
+                        <!-- Row / End -->
+
                         <br>
 
                         <!-- Area Range -->

@@ -87,8 +87,8 @@
                     @else
                         <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
                     @endif
-						<label class="switch" style="margin-top: 10px;"><input type="checkbox" id="difable_mode" @if(session()->exists('difable_mode'))@if(session()->get('difable_mode') == 1) checked @endif @endif  ><span class="slider round"></span></label>
-						<a href="#" class="sign-in popup-with-zoom-anim"> Difable Mode</a>
+						<!-- <label class="switch" style="margin-top: 10px;"><input type="checkbox" id="difable_mode" @if(session()->exists('difable_mode'))@if(session()->get('difable_mode') == 1) checked @endif @endif  ><span class="slider round"></span></label>
+						<a href="#" class="sign-in popup-with-zoom-anim"> Difable Mode</a> -->
 				</div>
 			</div>
 			<!-- Right Side Content / End -->
@@ -276,12 +276,13 @@ var infoBox_ratingType='star-rating';
             <?php $no++; endforeach; ?>
             
             <?php foreach ($club as $row): ?>
+			<?php $icon = $row->difable == 1 ? '<i class="im im-icon-Waiter"></i>' : '<i class="im im-icon-Basket-Ball"></i>'; ?>
             [
                 locationData('<?= route('detail.club', $row->id) ?>','<?= $row->thumb_img ?>',"<?= $row->nama ?>",'<?= $row->alamat ?>',false,false),
                 <?= $row->lat ?>,
                 <?= $row->long ?>,
                 <?= $no ?>,
-                '<i class="im im-icon-Basket-Ball"></i>'
+                '<?= $icon ?>'
             ],
             <?php $no++; endforeach; ?>
         ];
