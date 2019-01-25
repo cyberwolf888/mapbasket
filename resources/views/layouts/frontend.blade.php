@@ -10,7 +10,7 @@
 <!-- CSS
 ================================================== -->
 <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css">
-<link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/main.css" id="colors">
+<link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/blue.css" id="colors">
 
 @stack('page_css')
 

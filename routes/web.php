@@ -19,6 +19,7 @@ Route::get('/club', 'HomeController@club')->name('home.club');
 Route::get('/detail/lapangan/{id}', 'HomeController@detail_lapangan')->name('detail.lapangan');
 Route::get('/detail/club/{id}', 'HomeController@detail_club')->name('detail.club');
 Route::post('/review', 'HomeController@post_review')->name('post.review');
+Route::get('/difable-mode/{mode}', 'HomeController@difable_mode')->name('home.difable_mode');
 
 
 

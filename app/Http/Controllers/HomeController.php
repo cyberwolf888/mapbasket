@@ -171,4 +171,11 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    public function difable_mode($mode)
+    {
+	    session(['difable_mode'=> $mode]);
+
+	    return redirect()->back();
+    }
 }

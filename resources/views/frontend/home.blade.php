@@ -11,7 +11,15 @@
 <!-- CSS
 ================================================== -->
 <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css">
-<link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/main.css" id="colors">
+@if(session()->exists('difable_mode'))
+	@if(session()->get('difable_mode') == 1)
+		<link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/blue.css" id="colors">
+	@else
+		<link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/main.css" id="colors">
+	@endif
+@else
+	<link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/main.css" id="colors">
+@endif
 
 <style>
     #streetView, #geoLocation, #scrollEnabling {
@@ -79,6 +87,8 @@
                     @else
                         <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
                     @endif
+						<label class="switch" style="margin-top: 10px;"><input type="checkbox" id="difable_mode" @if(session()->exists('difable_mode'))@if(session()->get('difable_mode') == 1) checked @endif @endif  ><span class="slider round"></span></label>
+						<a href="#" class="sign-in popup-with-zoom-anim"> Difable Mode</a>
 				</div>
 			</div>
 			<!-- Right Side Content / End -->
@@ -94,7 +104,7 @@
 				<div class="sign-in-form style-1">
 
 					<ul class="tabs-nav">
-                        <li class=""><a href="#tab1">Log In</a></li>
+                        <li class=""><a href="#tab1">Log In </a></li>
 					</ul>
 
 					<div class="tabs-container alt">
@@ -575,6 +585,14 @@ var infoBox_ratingType='star-rating';
     };
     
 })(this.jQuery);
+
+$("#difable_mode").change(function () {
+    if($("#difable_mode").is(':checked')){
+        window.location.href = "<?= route( 'home.difable_mode',['mode'=>1]) ?>";
+    }else{
+        window.location.href = "<?= route( 'home.difable_mode',['mode'=>0]) ?>";
+	}
+});
 </script>
 
 @if($errors->has('password') || $errors->has('email'))
